@@ -1,0 +1,16 @@
+{
+  "name": "riesenneger",
+  "version": "1.0.0",
+  "description": "bei nieselregen",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^4.0.8",
+    "electron-peer-connection": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "cherule",
+  "license": "MIT"
+}
