@@ -2,7 +2,7 @@
 <b> this is no good readme </b>
 
 # Setup
-### Requires [NPM]("https://nodejs.org/en/download/")
+### Requires [NPM](https://nodejs.org/en/download/)
 Navigate into the `Riesenneger bei Nieselregen` folder  
 Execute following commands:  
 * Install required dependencies  
