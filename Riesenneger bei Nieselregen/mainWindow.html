@@ -12,27 +12,31 @@
         <input type="text" placeholder="ID" id="userId" required>
         <input type="submit" id="btn_connect" value="Connect">        
     </form>
-    
+    <div>
+        <p id="status"></p>
+    </div>
+
     <script>
-        
         var electron = require('electron');
         var {ipcRenderer} = electron;
         
         var form = document.querySelector('form');
+        var status = document.getElementById('status');
+
+        const HOST = '10.0.0.17';
+        const PORT = 9000;
 
         form.addEventListener('submit', connectToServer);
 
-        
 
         function connectToServer(e){
             e.preventDefault();
             console.log('connecting');
-            
+
             var id = document.getElementById('userId').value;
 
-            var peer = new Peer(id, {host: '127.0.0.1', port: 9000, path: '/api'});
+            var peer = new Peer(id, {host: '10.0.0.17', port: 9000, path: '/api'}); 
         }
-
     </script>
 </body>
 </html>
