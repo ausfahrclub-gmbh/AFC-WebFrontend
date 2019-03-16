@@ -3,7 +3,7 @@ const url = require('url');
 const path = require('path');
 const p2pChannel = require('electron-peer-connection').main;
 
-const {app, BrowserWindow} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = electron;
 
 let mainWindow;
 

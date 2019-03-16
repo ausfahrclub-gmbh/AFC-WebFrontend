@@ -5,10 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Riesenneger im Nieselregen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js"></script>
 </head>
 <body>
+    <form>
+        <input type="text" placeholder="ID" id="userId" required>
+        <input type="submit" id="btn_connect" value="Connect">        
+    </form>
     
+    <script>
+        
+        var electron = require('electron');
+        var {ipcRenderer} = electron;
+        
+        var form = document.querySelector('form');
+
+        form.addEventListener('submit', connectToServer);
+
+        
+
+        function connectToServer(e){
+            e.preventDefault();
+            console.log('connecting');
+            
+            var id = document.getElementById('userId').value;
+
+            var peer = new Peer(id, {host: '127.0.0.1', port: 9000, path: '/api'});
+        }
+
+    </script>
 </body>
 </html>
