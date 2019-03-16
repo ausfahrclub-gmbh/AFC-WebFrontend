@@ -3,10 +3,10 @@ var app = express();
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 
 const PORT = 9000;
-const HOSTNAME = '127.0.0.1'
+const HOST = '10.0.0.17';
 var date = new Date();
 
-var server = app.listen(PORT,HOSTNAME,() => console.log(`Server running on port ${PORT} | hostname ${HOSTNAME}`));
+var server = app.listen(PORT,HOST,() => console.log(`Server running on  ${HOST} : ${PORT}`));
 
 var options = {
     debug: true
@@ -15,6 +15,7 @@ var options = {
 var peerserver = ExpressPeerServer(server, options);
 
 app.use('/api', peerserver);
+
 app.get('/', function(req, res, next) { res.send('Hello world!'); });
 
 // Logging users that connect/disconnect
