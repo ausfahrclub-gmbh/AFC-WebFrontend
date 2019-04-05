@@ -1,26 +1,28 @@
-const play = require('audio-play');
-const load = require('audio-loader');
-
-var socket = io.connect('http://localhost:9000');
-
-/*
- function playSound() {  
- 
-    load('./Sounds/startup.mp3').then(play);
-    
-    //var audio = new Audio('./Sounds/startup.mp3');
-    //audio.play();   
- }
- */
- 
+var socket;
+var ipadress = 'http://localhost:9000';
 
 window.onload = function () { 
+        
    // Query DOM
    var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
       output = document.getElementById('output'),
-      feedback = document.getElementById('feedback');
+      feedback = document.getElementById('feedback'),
+      status = document.getElementById('status');
+
+   document.getElementById('adress').innerHTML = '(' + ipadress + ')';
+
+   socket = io.connect(ipadress);
+
+   socket.on('connect', () => {
+      status.style.color = "green"
+      status.innerHTML = "CONNECTED"
+    });
+    socket.on('disconnect', () => {
+       status.style.color = "red"
+       status.innerHTML = "DISCONNECTED"
+    });
 
    // Emit events
    btn.addEventListener('click', function(){
@@ -45,6 +47,3 @@ window.onload = function () {
       feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
    });
  }
-
- 
-
