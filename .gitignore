@@ -121,3 +121,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode
+
+# For all the sound files
+*.mp3

@@ -1,7 +1,7 @@
 # AFC-Website
 <b> this is no good readme </b>
 
-# Setup
+# Setup (deprecated)
 ### Requires [NPM](https://nodejs.org/en/download/)
 Navigate into the `Riesenneger bei Nieselregen` folder  
 Execute following commands:  
