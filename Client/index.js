@@ -1,6 +1,7 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
+//const sem = require('./JS/client.js');
 
 const {app, BrowserWindow, globalShortcut} = electron;
 
@@ -24,11 +25,37 @@ app.on('ready', function(){
 
     mainWindow.on('closed', function() {mainWindow = null;});
 
-    globalShortcut.register('num6', () => {
-        console.log('numpad6 pressed');
-    });
-
+    registerShortcuts();
 });
 
-
-// if(process.env.NODE_ENV != 'production')
+function registerShortcuts() {
+    //Alarm-abort  
+    globalShortcut.register('F4',() => { 
+        mainWindow.webContents.send('abort', 0);
+    });
+    //Other alam levels
+    globalShortcut.register('Alt+y',() => { 
+        mainWindow.webContents.send('trigger', 1);
+    });
+    globalShortcut.register('Alt+x',() => { 
+        mainWindow.webContents.send('trigger', 2);
+    });
+    globalShortcut.register('Alt+c',() => { 
+        mainWindow.webContents.send('trigger', 3);
+    });
+    globalShortcut.register('Alt+v',() => { 
+        mainWindow.webContents.send('trigger', 4);
+    });
+    globalShortcut.register('Alt+b',() => { 
+        mainWindow.webContents.send('trigger', 5);
+    });
+    globalShortcut.register('Alt+n',() => { 
+        mainWindow.webContents.send('trigger', 6);
+    });
+    globalShortcut.register('Alt+m',() => { 
+        mainWindow.webContents.send('trigger', 7);
+    });
+    globalShortcut.register('Alt+,',() => { 
+        mainWindow.webContents.send('trigger', 8);
+    });
+}
