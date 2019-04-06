@@ -1,13 +1,14 @@
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
-//const sem = require('./JS/client.js');
 
 const {app, BrowserWindow, globalShortcut} = electron;
 
+/* For Developing
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 });
+*/
 
 let mainWindow;
 
@@ -23,7 +24,9 @@ app.on('ready', function(){
         slashes: true
     }));
 
-    mainWindow.on('closed', function() {mainWindow = null;});
+    mainWindow.on('closed', function() {
+        app.quit();
+    });
 
     registerShortcuts();
 });
