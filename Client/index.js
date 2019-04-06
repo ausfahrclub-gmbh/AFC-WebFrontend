@@ -2,7 +2,7 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-const {app, BrowserWindow} = electron;
+const {app, BrowserWindow, globalShortcut} = electron;
 
 require('electron-reload')(__dirname, {
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
@@ -21,8 +21,13 @@ app.on('ready', function(){
         protocol:'file:',
         slashes: true
     }));
-    
+
     mainWindow.on('closed', function() {mainWindow = null;});
+
+    globalShortcut.register('num6', () => {
+        console.log('numpad6 pressed');
+    });
+
 });
 
 

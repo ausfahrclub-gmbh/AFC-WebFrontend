@@ -5,7 +5,9 @@ var ipadress = 'http://25.66.153.178:9000';
 var startup_sound = new Howl({
    src: ['./Audio./startup.mp3'],
    preload: true,
-   autoplay: true
+   volume: 0.2,
+   autoplay: true,
+   
 });
 
 
