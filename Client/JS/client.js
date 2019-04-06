@@ -1,8 +1,16 @@
 var socket;
-var ipadress = 'http://localhost:9000';
+var ipadress = 'http://25.66.153.178:9000';
+
+// Startup-sound
+var startup_sound = new Howl({
+   src: ['./Audio./startup.mp3'],
+   preload: true,
+   autoplay: true
+});
+
 
 window.onload = function () { 
-        
+
    // Query DOM
    var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
