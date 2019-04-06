@@ -9,8 +9,10 @@
   "author": "cherule",
   "license": "MIT",
   "dependencies": {
-    "electron": "^4.1.4",
-    "electron-reload": "^1.4.0"
+    "electron": "^4.1.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron-packager": "^13.1.1",
+    "electron-reload": "^1.4.0"
+  }
 }
