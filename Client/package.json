@@ -2,14 +2,15 @@
   "name": "alarm",
   "version": "1.0.0",
   "description": "alarm for alarm",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "author": "cherule",
   "license": "MIT",
   "dependencies": {
-    "electron": "^4.1.4"
+    "electron": "^4.1.4",
+    "node-notifier": "^5.4.0"
   },
   "devDependencies": {
     "electron-packager": "^13.1.1",
