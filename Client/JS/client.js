@@ -2,15 +2,11 @@ const electron = require('electron');
 const {ipcRenderer} = electron;
 
 var socket;
-var currSound;
-var ipadress = 'http://25.66.153.178:9000';
+var sound;
 
-ipcRenderer.on('abort', (e, level) => {
-   socket.emit('alarm', {
-      type: 'abort',
-      level: level
-   });
-});
+var ipadress = 'http://localhost:9000';
+//var ipadress = 'http://25.66.153.178:9000';
+
 
 ipcRenderer.on('trigger', (e, level) => {
    socket.emit('alarm', {
@@ -20,7 +16,7 @@ ipcRenderer.on('trigger', (e, level) => {
 });
 
 // Startup-sound (autoplay)
-currSound = new Howl({
+sound = new Howl({
    src: ['./Audio./startup.mp3'],
    preload: true,
    volume: 0.2,
@@ -41,7 +37,6 @@ window.onload = function () {
       status = document.getElementById('status');
 
    document.getElementById('adress').innerHTML = '(' + ipadress + ')';
-
    socket = io.connect(ipadress);
 
    // Changes the lable on mainWindow.html, to give feedback to the user
@@ -63,6 +58,13 @@ window.onload = function () {
       message.value = "";
    });
 
+   message.addEventListener("keyup", function(event){
+      if (event.keyCode === 13) {
+         event.preventDefault();
+         btn.click();
+        }
+   });
+
    message.addEventListener('keypress', function(){
       socket.emit('typing', handle.value);
    })
@@ -79,37 +81,34 @@ window.onload = function () {
 
    // Listen for incoming alarms
    socket.on('alarm', function(data){
-      console.log('Received alarm:' + data.type + '-' + data.level);
-      //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks
-      if(currSound.playing()){
-         currSound.stop();
-      }
+      
+      const {type, level} = data;
 
-      // Abort received, hence stopping the audio
-      if(data.type == 'alarm_stop'){
+      console.log(`\nReceived alarm: ${type} ${level}`);
+
+      //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks      
+      sound.unload();
+
+      // Alarm stop received 
+      if(type == 'alarm_stop'){
          console.log('Stopped playing the alarm');
       }
-      else if (data.type == 'abort'){
-         if(data.level == 0){
-            currSound = new Howl({
-               src: [`./Audio./alarm${data.level}.mp3`],
-               volume: 0.2,
-               autoplay: true,
-            });
-            console.log('Aborted alarm');
-         }
-      }
-      else{ // Alarm received
-        
-         // Autoplays the received alarm
-         currSound = new Howl({
-            src: [`./Audio./alarm${data.level}.mp3`],
-            volume: 0.2,
-            autoplay: true,
-         });
-
+      // Alarm received
+      else{
+         console.log('State: ', sound.state());
+         sound = playSound(level);
       }
    });
+
+   function playSound(level) {
+      loadingSound = true;
+      var howl = new Howl({
+         src: [`./Audio./alarm${level}.mp3`],
+         volume: 0.2,
+         autoplay: true,
+      });
+      return howl;
+   }
  }
 
 
