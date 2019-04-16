@@ -3,32 +3,47 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <title>Alarm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
 </head>
-<body>
-    <div id="riesen-chat">
-            <h2>Riesenneger chat (for testing)</h2>
+<body> 
+    <nav class="navbar navbar-dark bg-dark sticky-top" data-offset-top="197">
+        <span class="navbar-brand mb-0 h1">Riesennega</span>   
+       
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#send">To chat</a>
+            </li>
+        </ul>
+        <span class="badge badge-light ">
+            <label id="status">DISCONNECTED</label> 
+            <label id="adress">oof</label>
+        </span>
+    </nav>
+
+     <div id="riesen-chat" class="container-fluid ">
+            <h2 class="header">Riesennega chat <small>(for testing)</small> </h2> 
             <div id="chat-window">
                 <div id="output"></div>
                 <div id="feedback"></div>
             </div>
+
             <input id="handle" type="text" placeholder="Handle" />
-            <input id="message" type="text" placeholder="Message" />
-            <button id="send">Send</button>       
+            <input id="message" type="text" placeholder="Type something.." />
+            <button id="send" class="btn btn-dark">Send</button>
     </div>
-    <div>   
-        <label id="status">DISCONNECTED</label> 
-        <label id="adress">oof</label>
-    </div>
+  
 
     <!-- SCRIPT FILES -->
     <script type="text/javascript" src="./JS/howler.min.js"></script>
     <script type="text/javascript" src="./JS/client.js"></script>
-    
-   
 
 </body>
 </html>
