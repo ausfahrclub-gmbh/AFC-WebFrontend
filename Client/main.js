@@ -45,9 +45,29 @@ function registerShortcuts() {
         mainWindow.webContents.send('trigger', 73);
     });
 
-    for (let i = 1; i < 9; i++) {
-        globalShortcut.register(i.toString(),() => { 
-            mainWindow.webContents.send('trigger', i);
-        });
-    };
+    //Other alam levels
+    globalShortcut.register('Alt+y',() => { 
+        mainWindow.webContents.send('trigger', 1);
+    });
+    globalShortcut.register('Alt+x',() => { 
+        mainWindow.webContents.send('trigger', 2);
+    });
+    globalShortcut.register('Alt+c',() => { 
+        mainWindow.webContents.send('trigger', 3);
+    });
+    globalShortcut.register('Alt+v',() => { 
+        mainWindow.webContents.send('trigger', 4);
+    });
+    globalShortcut.register('Alt+b',() => { 
+        mainWindow.webContents.send('trigger', 5);
+    });
+    globalShortcut.register('Alt+n',() => { 
+        mainWindow.webContents.send('trigger', 6);
+    });
+    globalShortcut.register('Alt+m',() => { 
+        mainWindow.webContents.send('trigger', 7);
+    });
+    globalShortcut.register('Alt+,',() => { 
+        mainWindow.webContents.send('trigger', 8);
+    });
 }
