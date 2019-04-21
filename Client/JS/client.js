@@ -8,8 +8,12 @@ var sound;
 var ipadress = 'http://25.66.153.178:9000';
 
 
+
+
+
 ipcRenderer.on('trigger', (e, level) => {
    socket.emit('alarm', {
+      id: socket.id,
       type: 'trigger',
       level: level
    });
@@ -43,11 +47,16 @@ window.onload = function () {
    socket.on('connect', () => {
       status.style.color = "green"
       status.innerHTML = "CONNECTED"
+      console.log(socket);
     });
     socket.on('disconnect', () => {
        status.style.color = "red"
        status.innerHTML = "DISCONNECTED"
     });
+
+   
+
+
 
    // Emit events
    btn.addEventListener('click', function(){
@@ -82,16 +91,18 @@ window.onload = function () {
    // Listen for incoming alarms
    socket.on('alarm', function(data){
       
-      const {type, level} = data;
+      const {id, type, level} = data;
+      
 
-      console.log(`\nReceived alarm: ${type} ${level}`);
+      console.log(`\nReceived alarm: ${id} ${type} ${level}`);
+      console.log(data);
 
       //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks      
       sound.unload();
 
       // Alarm stop received 
       if(type == 'alarm_stop'){
-         console.log('Stopped playing the alarm');
+         console.log(` ${id} Stopped playing ${level} alarm`);
       }
       // Alarm received
       else{
