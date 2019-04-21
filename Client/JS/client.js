@@ -1,10 +1,11 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-const NotifySend = require('node-notifier').NotifySend;
+//const NotifySend = require('node-notifier').NotifySend;
 
 var socket;
 var sound;
-var notifier = new NotifySend();
+//var notifier = new NotifySend();
+
 
 //var ipadress = 'http://localhost:9000';
 var ipadress = 'http://25.66.153.178:9000';
@@ -108,14 +109,20 @@ window.onload = function () {
 
       // Alarm stop received 
       if(type == 'alarm_stop'){
+         // var time = new Date().getTime();
+         // var date = new Date(time);
+         // var timestamp = (date.toString());
          console.log(` ${id} Stopped playing ${level} alarm`);
          alarmlog.innerHTML += '<p style="color: red">' + `${id} hat Alarm ${level} gestoppt` + '</p>';
-         notifier.ti
+         //notifier.ti
 
 
       }
       // Alarm received
       else{
+         // var time = new Date().getTime();
+         // var date = new Date(time);
+         // var timestamp = (date.toString());
          console.log('State: ', sound.state());
          sound = playSound(level);
          alarmlog.innerHTML += '<p style="color: green">' + `${id} hat Alarm ${level} gestartet` + '</p>';
