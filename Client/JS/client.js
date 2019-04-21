@@ -1,8 +1,10 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
+const NotifySend = require('node-notifier').NotifySend;
 
 var socket;
 var sound;
+var notifier = new NotifySend();
 
 //var ipadress = 'http://localhost:9000';
 var ipadress = 'http://25.66.153.178:9000';
@@ -38,7 +40,8 @@ window.onload = function () {
       btn = document.getElementById('send'),
       output = document.getElementById('output'),
       feedback = document.getElementById('feedback'),
-      status = document.getElementById('status');
+      status = document.getElementById('status')
+      alarmlog = document.getElementById('Alarmlog');
 
    document.getElementById('adress').innerHTML = '(' + ipadress + ')';
    socket = io.connect(ipadress);
@@ -94,8 +97,11 @@ window.onload = function () {
       const {id, type, level} = data;
       
 
-      console.log(`\nReceived alarm: ${id} ${type} ${level}`);
-      console.log(data);
+      //console.log(`\nReceived alarm: ${id} ${type} ${level}`);
+     // console.log(data);
+
+      //console.log(container, id);
+      //alarmlog.innerText += `${id} Alarm ${level} ${type} \n`;
 
       //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks      
       sound.unload();
@@ -103,15 +109,20 @@ window.onload = function () {
       // Alarm stop received 
       if(type == 'alarm_stop'){
          console.log(` ${id} Stopped playing ${level} alarm`);
+         alarmlog.innerHTML += '<p style="color: red">' + `${id} hat Alarm ${level} gestoppt` + '</p>';
+         notifier.ti
+
+
       }
       // Alarm received
       else{
          console.log('State: ', sound.state());
          sound = playSound(level);
+         alarmlog.innerHTML += '<p style="color: green">' + `${id} hat Alarm ${level} gestartet` + '</p>';
       }
    });
 
-   function playSound(level) {
+  function playSound(level) {
       loadingSound = true;
       var howl = new Howl({
          src: [`./Audio./alarm${level}.mp3`],
