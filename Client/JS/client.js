@@ -109,23 +109,23 @@ window.onload = function () {
 
       // Alarm stop received 
       if(type == 'alarm_stop'){
-         // var time = new Date().getTime();
-         // var date = new Date(time);
-         // var timestamp = (date.toString());
+         var time = new Date().getTime();
+         var date = new Date(time);
+         var timestamp = (date.toString());
          console.log(` ${id} Stopped playing ${level} alarm`);
-         alarmlog.innerHTML += '<p style="color: red">' + `${id} hat Alarm ${level} gestoppt` + '</p>';
+         alarmlog.innerHTML += '<p style="color: red">' + `${timestamp} ${id} hat Alarm ${level} gestoppt` + '</p>';
          //notifier.ti
 
 
       }
       // Alarm received
       else{
-         // var time = new Date().getTime();
-         // var date = new Date(time);
-         // var timestamp = (date.toString());
+         var time = new Date().getTime();
+         var date = new Date(time);
+         var timestamp = (date.toString());
          console.log('State: ', sound.state());
          sound = playSound(level);
-         alarmlog.innerHTML += '<p style="color: green">' + `${id} hat Alarm ${level} gestartet` + '</p>';
+         alarmlog.innerHTML += '<p style="color: green">' + `${timestamp} ${id} hat Alarm ${level} gestartet` + '</p>';
       }
    });
 
