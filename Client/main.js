@@ -41,9 +41,22 @@ function registerShortcuts() {
     globalShortcut.register('F4',() => { 
         mainWindow.webContents.send('trigger', 0);
     });
+    
+    globalShortcut.register('F6',() => { 
+        mainWindow.webContents.send('trigger', 75);
+    });
+    globalShortcut.register('F8',() => { 
+        mainWindow.webContents.send('trigger', 88);
+    });
+
+
+
+    // this is a secret alarm
     globalShortcut.register('F7',() => { 
         mainWindow.webContents.send('trigger', 73);
     });
+    // this is a secret alarm
+
 
     //Other alam levels
     globalShortcut.register('Alt+y',() => { 
@@ -70,4 +83,5 @@ function registerShortcuts() {
     globalShortcut.register('Alt+,',() => { 
         mainWindow.webContents.send('trigger', 8);
     });
+
 }
