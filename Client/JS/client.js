@@ -1,18 +1,14 @@
 const electron = require('electron');
 const {ipcRenderer} = electron;
-//const NotifySend = require('node-notifier').NotifySend;
+
 
 var socket;
 var sound;
-//var notifier = new NotifySend();
+
 
 
 //var ipadress = 'http://localhost:9000';
 var ipadress = 'http://25.66.153.178:9000';
-
-
-
-
 
 ipcRenderer.on('trigger', (e, level) => {
    socket.emit('alarm', {
@@ -22,7 +18,7 @@ ipcRenderer.on('trigger', (e, level) => {
    });
 });
 
-// Startup-sound (autoplay)
+// Startup-sound (autoplay)   -NV
 sound = new Howl({
    src: ['./Audio./startup.mp3'],
    preload: true,
@@ -35,7 +31,7 @@ sound = new Howl({
 # # # # # # # # # # # # # # # #*/
 window.onload = function () { 
 
-   // Query DOM
+   // Query DOM   -NV
    var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
@@ -47,7 +43,7 @@ window.onload = function () {
    document.getElementById('adress').innerHTML = '(' + ipadress + ')';
    socket = io.connect(ipadress);
 
-   // Changes the lable on mainWindow.html, to give feedback to the user
+   // Changes the lable on mainWindow.html, to give feedback to the user   -NV
    socket.on('connect', () => {
       status.style.color = "green"
       status.innerHTML = "CONNECTED"
@@ -62,7 +58,7 @@ window.onload = function () {
 
 
 
-   // Emit events
+   // Emit events   -NV
    btn.addEventListener('click', function(){
       socket.emit('chat', {
          message: message.value,
@@ -82,7 +78,7 @@ window.onload = function () {
       socket.emit('typing', handle.value);
    })
 
-   // Listen for events
+   // Listen for events   -NV
    socket.on('chat', function(data){
       feedback.innerHTML = '';
       output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
@@ -92,12 +88,12 @@ window.onload = function () {
       feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
    });
 
-   // Listen for incoming alarms
+   // Listen for incoming alarms  -NV
    socket.on('alarm', function(data){
       
       const {id, type, level} = data;
       
-      //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks      
+      //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks   -NV 
       sound.unload();
 
       // set and format Timestamp for Alarmlog  -PW
@@ -116,13 +112,13 @@ window.onload = function () {
       }
 
 
-      // Alarm stop received 
+      // Alarm stop received   -NV
       if(type == 'alarm_stop'){
          console.log(` ${id} Stopped playing ${level} alarm`);
          alarmlog.innerHTML += '<p style="color: red">' + `${timestamp()} - ${id} hat Alarm ${level} gestoppt` + '</p>';
       }
 
-      // Alarm received
+      // Alarm received   -NV
       else{
          console.log('State: ', sound.state());
          sound = playSound(level);
