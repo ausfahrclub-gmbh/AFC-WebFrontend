@@ -97,35 +97,36 @@ window.onload = function () {
       
       const {id, type, level} = data;
       
-
-      //console.log(`\nReceived alarm: ${id} ${type} ${level}`);
-     // console.log(data);
-
-      //console.log(container, id);
-      //alarmlog.innerText += `${id} Alarm ${level} ${type} \n`;
-
       //Checks if a sound is already playing,if true stops the audio, to prevent overlaying the audio tracks      
       sound.unload();
 
+      // set and format Timestamp for Alarmlog  -PW
+      function timestamp(any){
+         var time = new Date().getTime();
+         var date = new Date(time); 
+         var hours = date.getHours();
+         var minutes = date.getMinutes();
+         var seconds = date.getSeconds();
+         hours = hours < 10 ? '0'+hours : hours;
+         minutes = minutes < 10 ? '0'+minutes : minutes;
+         seconds = seconds < 10 ? '0'+seconds : seconds;
+            
+         var hms = hours + ':' + minutes + ':' + seconds;
+         return hms;
+      }
+
+
       // Alarm stop received 
       if(type == 'alarm_stop'){
-         var time = new Date().getTime();
-         var date = new Date(time);
-         var timestamp = (date.toString());
          console.log(` ${id} Stopped playing ${level} alarm`);
-         alarmlog.innerHTML += '<p style="color: red">' + `${timestamp} ${id} hat Alarm ${level} gestoppt` + '</p>';
-         //notifier.ti
-
-
+         alarmlog.innerHTML += '<p style="color: red">' + `${timestamp()} - ${id} hat Alarm ${level} gestoppt` + '</p>';
       }
+
       // Alarm received
       else{
-         var time = new Date().getTime();
-         var date = new Date(time);
-         var timestamp = (date.toString());
          console.log('State: ', sound.state());
          sound = playSound(level);
-         alarmlog.innerHTML += '<p style="color: green">' + `${timestamp} ${id} hat Alarm ${level} gestartet` + '</p>';
+         alarmlog.innerHTML += '<p style="color: green">' + `${timestamp()} - ${id} hat Alarm ${level} gestartet` + '</p>';
       }
    });
 
