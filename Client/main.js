@@ -44,13 +44,15 @@ function registerShortcuts() {
     
     globalShortcut.register('F6',() => { 
         mainWindow.webContents.send('trigger', 75);
-    });
-    globalShortcut.register('F8',() => { 
-        mainWindow.webContents.send('trigger', 88);
+        
     });
     globalShortcut.register('F9',() => { 
         mainWindow.webContents.send('trigger', 74);
     });
+    globalShortcut.register('F8',() => { 
+        mainWindow.webContents.send('trigger', 88);
+    });
+
 
 
     // this is a secret alarm
