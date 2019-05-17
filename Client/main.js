@@ -52,7 +52,10 @@ function registerShortcuts() {
     globalShortcut.register('F8',() => { 
         mainWindow.webContents.send('trigger', 88);
     });
-
+    });
+    globalShortcut.register('=',() => { 
+        mainWindow.webContents.send('trigger', 999);
+    });
 
 
     // this is a secret alarm
