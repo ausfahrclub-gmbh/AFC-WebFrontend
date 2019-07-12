@@ -1,0 +1,14 @@
+<div class="row-md-6" *ngFor="let movie of movies">
+  <h3>{{movie.movieName}}</h3>  
+  <div class="form-group">
+      <label for="select">Star Rating (1-Low  5-Highest)</label>
+      <select class="form-control" id="select" *ngFor="let num of starRating">
+              <option>{{num}}</option>
+      </select>
+  </div>
+  <div class="form-group">
+      <label for="comment">Additional comment</label>
+      <textarea class="form-control" id="comment" rows="3"></textarea>
+  </div>
+  <button id="btn" type="button" class="btn btn-primary">Bewerten</button>
+</div>
