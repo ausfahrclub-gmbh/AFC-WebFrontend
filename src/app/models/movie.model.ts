@@ -1,6 +1,6 @@
 export interface Movie {
-    movieName: string,
-    gerne: string,
-    length: number,
-    releaseDate : Date
+    movieName: string;
+    genre: string;
+    length: number;
+    releaseDate: Date;
 }

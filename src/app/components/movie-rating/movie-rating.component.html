@@ -1,1 +1,11 @@
-<app-rating></app-rating>
+<div class="container-fluid">
+  <h2>AFC Movie Rating</h2>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Enter name">
+  </div>
+
+  <app-rating *ngFor="let movie of movies" [movie]="movie" (newMovieRating)="ratingAdded($event)"></app-rating>
+
+</div>
+

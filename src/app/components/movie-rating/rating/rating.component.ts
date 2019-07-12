@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { MovieRating } from 'src/app/models/movie-rating.model';
 import { Movie } from 'src/app/models/movie.model';
-import { MovieService } from 'src/app/services/movie.service';
+import {MovieRatingService} from '../../../services/movie-rating.service';
 
 @Component({
   selector: 'app-rating',
@@ -10,16 +10,29 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class RatingComponent implements OnInit {
 
-  newRating: MovieRating
-  @Input MovieService movieService 
-  movies: Movie[]
+  @Input() movie: Movie;
+  @Output() newMovieRating = new EventEmitter<MovieRating>();
 
-  starRating: [1, 2, 3, 4, 5]
-  
-  constructor(private movieService: MovieService, private ) { }
+  editMovieRating: MovieRating = {id: 0, user: '', movie: '', starRating: 0, comment: '', fellAsleep: '' };
+  starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  constructor(private movieRatingService: MovieRatingService) { }
 
   ngOnInit() {
-  
+  }
+
+  onRatingSubmit() {
+    const {comment, starRating, fellAsleep} = this.editMovieRating;
+    const rating: MovieRating = {
+      id: undefined,
+      user: '',
+      movie: this.movie.movieName,
+      comment: comment,
+      starRating: starRating,
+      fellAsleep: 'Y'
+    };
+
+    this.newMovieRating.emit(rating);
   }
 
 }

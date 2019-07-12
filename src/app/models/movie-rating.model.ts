@@ -1,5 +1,8 @@
-import { Movie } from './movie.model';
-
 export interface MovieRating {
-    movie: Movie
+  id: number;
+  user: string;
+  movie: string;
+  starRating: number;
+  comment: string;
+  fellAsleep: string;
 }
