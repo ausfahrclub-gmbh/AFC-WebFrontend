@@ -4,8 +4,8 @@
     <label for="name">Name</label>
     <input [(ngModel)]="name" type="text" class="form-control" id="name" placeholder="Enter name">
   </div>
-
+</div>
+<div class="container">
   <app-rating *ngFor="let movie of movies" [movie]="movie" (newMovieRating)="ratingAdded($event)"></app-rating>
-
 </div>
 
