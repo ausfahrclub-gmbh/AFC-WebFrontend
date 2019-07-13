@@ -26,7 +26,7 @@ export class RatingComponent implements OnInit {
     this.movieRatingService.getRatingForMovie(this.movie.movieName).subscribe(
       (data) => {
         // tmp
-        if(data.length !== 0){
+        if (data.hasOwnProperty('movie')){
           this.movieOverallRating = data;
         }
         console.log(this.movieOverallRating);
