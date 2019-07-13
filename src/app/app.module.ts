@@ -7,18 +7,24 @@ import { MovieRatingComponent } from './components/movie-rating/movie-rating.com
 import { RatingComponent } from './components/movie-rating/rating/rating.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieRatingComponent,
-    RatingComponent
+    RatingComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

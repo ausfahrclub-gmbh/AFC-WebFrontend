@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MovieRating} from '../models/movie-rating.model';
 import {environment} from '../../environments/environment';
+import {MovieOverallRating} from '../models/movie-overall-rating.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,6 +22,10 @@ export class MovieRatingService {
 
   getAllRatings() {
     return this.http.get<MovieRating[]>(this.url);
+  }
+
+  getRatingForMovie(movieName) {
+    return this.http.get<MovieOverallRating>(this.url + '/' + movieName);
   }
 
   postRating(newRating: MovieRating) {

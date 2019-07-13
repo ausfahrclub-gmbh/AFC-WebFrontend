@@ -2,6 +2,8 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { MovieRating } from 'src/app/models/movie-rating.model';
 import { Movie } from 'src/app/models/movie.model';
 import {MovieRatingService} from '../../../services/movie-rating.service';
+import {createGlobalSettings} from '@angular/cli/utilities/config';
+import {MovieOverallRating} from '../../../models/movie-overall-rating.model';
 
 @Component({
   selector: 'app-rating',
@@ -14,11 +16,25 @@ export class RatingComponent implements OnInit {
   @Output() newMovieRating = new EventEmitter<MovieRating>();
 
   editMovieRating: MovieRating = {id: 0, user: '', movie: '', starRating: 0, comment: '', fellAsleep: '' };
-  starRating = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  starRatingOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  constructor(private movieRatingService: MovieRatingService) { }
+  movieOverallRating: MovieOverallRating = {movie: '', rating: 0, ratingAmount: 0};
+
+  constructor(private movieRatingService: MovieRatingService) {  }
 
   ngOnInit() {
+    this.movieRatingService.getRatingForMovie(this.movie.movieName).subscribe(
+      (data) => {
+        // tmp
+        if(data.length !== 0){
+          this.movieOverallRating = data;
+        }
+        console.log(this.movieOverallRating);
+
+      }, (error) => {
+        alert('Could not get overall movie ratings: ' + error.message);
+      }
+    );
   }
 
   onRatingSubmit() {

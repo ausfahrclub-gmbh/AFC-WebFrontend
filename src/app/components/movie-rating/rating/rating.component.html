@@ -1,15 +1,30 @@
-<div class="row-md-6">
-  <h3>{{movie.movieName}}</h3>
-  <div class="form-group">
+<div class="row">
+  <div class="col-md-2 align-self-center">
+    <p class="text-center font-weight-bold">Current Rating</p>
+    <p class="text-center">{{movieOverallRating.rating}}<i class="em em-star"></i></p>
+
+    <span class="badge badge-success"
+          [hidden]="movieOverallRating.rating == 0 || movieOverallRating.rating < 7">Guut Guut</span>
+    <span class="badge badge-warning"
+          [hidden]="movieOverallRating.rating == 0 || (movieOverallRating.rating < 5 || movieOverallRating.rating > 7)">Negarei</span>
+    <span class="badge badge-danger"
+          [hidden]="movieOverallRating.rating == 0 || movieOverallRating.rating > 4">UU Amoasch 1</span>
+
+  </div>
+  <div class="col-md-10">
+    <h3>{{movie.movieName}}</h3>
+    <div class="form-group">
       <label for="select">Star Rating (1=lowest)</label>
       <select [(ngModel)]="editMovieRating.starRating" class="form-control" id="select">
-              <option *ngFor="let num of starRating">{{num}}</option>
+        <option *ngFor="let num of starRatingOptions">{{num}}</option>
       </select>
-  </div>
-  <div class="form-group">
+    </div>
+    <div class="form-group">
       <label for="comment">Additional comment</label>
       <textarea [(ngModel)]="editMovieRating.comment" class="form-control" id="comment" rows="3"></textarea>
+    </div>
+    <button (click)="onRatingSubmit()" id="btn" class="btn btn-primary">Bewerten</button>
   </div>
-  <button (click)="onRatingSubmit()" id="btn" class="btn btn-primary">Bewerten</button>
+
 </div>
 <hr/>
