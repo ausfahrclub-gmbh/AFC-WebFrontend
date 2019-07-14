@@ -1,16 +1,22 @@
 <div class="row">
   <div class="col-md-2 align-self-center">
     <p class="text-center font-weight-bold">Current Rating</p>
-    <p class="text-center">{{movieOverallRating.rating}}<i class="em em-star"></i></p>
+    <p class="text-center">{{movieOverallRating.rating}}<img src="assets/star.png" width="24" height="24"></p>
 
     <span class="badge badge-success"
           [hidden]="movieOverallRating.rating == 0 || movieOverallRating.rating < 7">Guut Guut</span>
     <span class="badge badge-warning"
-          [hidden]="movieOverallRating.rating == 0 || (movieOverallRating.rating < 5 || movieOverallRating.rating > 7)">Negarei</span>
+          [hidden]="movieOverallRating.rating == 0 || (movieOverallRating.rating < 5 || movieOverallRating.rating >= 7)">Negarei</span>
     <span class="badge badge-danger"
           [hidden]="movieOverallRating.rating == 0 || movieOverallRating.rating > 4">UU Amoasch 1</span>
 
-          <p class="text-center">{{movieOverallRating.ratingAmount}} Bewertungen</p>
+          <p class="text-center">{{movieOverallRating.ratingAmount}}
+            <span class="text-center"
+              [hidden]="movieOverallRating.ratingAmount == 0 || movieOverallRating.ratingAmount > 1">Bewertung</span>
+              <span class="text-center"
+              [hidden]="movieOverallRating.ratingAmount == 1">Bewertungen</span>
+
+          </p>
   </div>
 
   <div class="col-md-10">
