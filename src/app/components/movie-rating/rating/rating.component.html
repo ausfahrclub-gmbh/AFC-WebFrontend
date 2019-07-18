@@ -31,6 +31,18 @@
       <label for="comment">Additional comment</label>
       <textarea [(ngModel)]="editMovieRating.comment" class="form-control" id="comment" rows="3"></textarea>
     </div>
+    <div>
+    <mat-checkbox 
+    class="example-margin"
+    [(ngModel)]="editMovieRating.fellAsleep"
+    [(indeterminate)]="N"
+    [(disabled)]="Y" >
+      Fell a sleep
+    
+    </mat-checkbox>
+      </div>
+
+
     <button (click)="onRatingSubmit()" id="btn" class="btn btn-primary">Rate</button>
   </div>
 

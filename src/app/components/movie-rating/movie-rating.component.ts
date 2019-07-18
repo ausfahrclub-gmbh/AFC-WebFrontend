@@ -34,13 +34,13 @@ export class MovieRatingComponent implements OnInit {
         (data) => {
           console.log('Data Posted:', data);
           // tmp
-          if(data == null){
+          if (data == null) {
             this.toastrService.show('Bewerten is im oasch gonga');
-          }else {
+          } else {
             this.toastrService.show('Bewertung gesendet');
           }
 
-        },(error) => {
+        }, (error) => {
           alert('Could not submit rating: ' + error.message);
         });
     } else {
