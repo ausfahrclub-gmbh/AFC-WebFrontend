@@ -44,10 +44,9 @@ export class RatingComponent implements OnInit {
 
     // This condition will always return 'false' since the types 'string' and 'true' have no overlap. at the if statement below.
     // can't dist this version
-    // tslint:disable-next-line:
-    if (this.editMovieRating.fellAsleep === true) {
+    if (this.editMovieRating.fellAsleep === 'true') {
       fellAsleep = 'Y';
-    } else if (this.editMovieRating.fellAsleep === false) {
+    } else if (this.editMovieRating.fellAsleep === '') {
       fellAsleep = 'N';
     } else {
     }
