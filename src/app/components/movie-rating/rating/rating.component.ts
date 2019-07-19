@@ -38,9 +38,12 @@ export class RatingComponent implements OnInit {
   }
 
   onRatingSubmit() {
+
     let { comment, starRating, fellAsleep } = this.editMovieRating;
 
-    if (this.editMovieRating.fellAsleep === true) {
+  // This condition will always return 'false' since the types 'string' and 'true' have no overlap. at the if statement below.
+  // can't dist this version
+    if ((this.editMovieRating.fellAsleep === true)) {
       fellAsleep = 'Y';
     } else if (this.editMovieRating.fellAsleep === false) {
       fellAsleep = 'N';

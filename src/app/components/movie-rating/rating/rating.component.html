@@ -21,6 +21,7 @@
 
   <div class="col-md-10">
     <h3>{{movie.movieName}}</h3>
+           <h6>{{movie.genre}} at {{movie.cinema}}, {{movie.length}} minutes </h6>
     <div class="form-group">
       <label for="select">Star Rating (1=lowest)</label>
       <select [(ngModel)]="editMovieRating.starRating" class="form-control" id="select">
