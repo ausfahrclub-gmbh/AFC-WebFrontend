@@ -39,11 +39,13 @@ export class RatingComponent implements OnInit {
 
   onRatingSubmit() {
 
+    // tslint:disable-next-line:prefer-const
     let { comment, starRating, fellAsleep } = this.editMovieRating;
 
-  // This condition will always return 'false' since the types 'string' and 'true' have no overlap. at the if statement below.
-  // can't dist this version
-    if ((this.editMovieRating.fellAsleep === true)) {
+    // This condition will always return 'false' since the types 'string' and 'true' have no overlap. at the if statement below.
+    // can't dist this version
+    // tslint:disable-next-line:
+    if (this.editMovieRating.fellAsleep === true) {
       fellAsleep = 'Y';
     } else if (this.editMovieRating.fellAsleep === false) {
       fellAsleep = 'N';
@@ -54,9 +56,9 @@ export class RatingComponent implements OnInit {
       id: undefined,
       user: '',
       movie: this.movie.movieName,
-      comment: comment,
-      starRating: starRating,
-      fellAsleep: fellAsleep
+      comment,
+      starRating,
+      fellAsleep
 
     };
 

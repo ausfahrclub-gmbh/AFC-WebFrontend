@@ -35,16 +35,16 @@ export class MovieRatingComponent implements OnInit {
           console.log('Data Posted:', data);
           // tmp
           if (data == null) {
-            this.toastrService.show('Bewerten is im oasch gonga');
+            this.toastrService.show('Raiting failed. Please try again or contact afc@outlook.at');
           } else {
-            this.toastrService.show('Bewertung gesendet');
+            this.toastrService.show('Raiting submitted');
           }
 
         }, (error) => {
           alert('Could not submit rating: ' + error.message);
         });
     } else {
-      this.toastrService.show('omma gib deim namen ei');
+      this.toastrService.show('Please enter your name!');
     }
   }
 
