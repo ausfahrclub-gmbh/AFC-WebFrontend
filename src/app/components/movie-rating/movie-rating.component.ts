@@ -15,6 +15,15 @@ export class MovieRatingComponent implements OnInit {
   movies: Movie[];
   name = '';
 
+  // timer = setInterval(() => {
+  //   console.log('timer');
+  //   this.coolingDown = true;
+  //   clearTimeout(this.timer);   
+  // }, 2000);
+  
+  coolingDown = false;
+  
+
   constructor(private movieService: MovieService, private movieRatingService: MovieRatingService, private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -27,19 +36,23 @@ export class MovieRatingComponent implements OnInit {
   }
 
   ratingAdded(rating: MovieRating) {
+
+
+
     if (this.name.length !== 0) {
 
       rating.user = this.name;
       this.movieRatingService.postRating(rating).subscribe(
+        
         (data) => {
-          console.log('Data Posted:', data);
-          // tmp
-          if (data == null) {
-            this.toastrService.show('Raiting failed. Please try again or contact afc@outlook.at');
-          } else {
-            this.toastrService.show('Raiting submitted');
-          }
 
+          if(data["rowsAffected"] == 1){           
+            this.toastrService.show('Raiting submitted');
+          }         
+          else{
+            this.toastrService.show('Raiting failed. Please try again or contact afc@outlook.at');
+          }
+        
         }, (error) => {
           alert('Could not submit rating: ' + error.message);
         });

@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:9000/'
+  apiUrl: 'http://localhost:9000/'
 
   // Testserver
-  apiUrl: 'http://25.66.153.178:9000/'
+  //apiUrl: 'http://25.66.153.178:9000/'
 };
 
 /*

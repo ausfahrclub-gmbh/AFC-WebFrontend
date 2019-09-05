@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+            <mat-form-field>
+                    <mat-label>Movie name</mat-label>
+                    <input type="text" [(ngModel)]="newMovie.movieName" matInput placeholder="Name" required>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Genre</mat-label>
+                    <input type="text" [(ngModel)]="newMovie.genre" matInput placeholder="Genre" required>
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <mat-label>Length</mat-label>
+                    <input matInput [(ngModel)]="newMovie.length" type="number" placeholder="Length" min="60">
+                </mat-form-field>
+            
+                <mat-form-field>
+                    <input [(ngModel)]="dateString" matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            
+                  
+                <mat-form-field>
+                    <mat-label>Cinema</mat-label>
+                    <mat-select [(ngModel)]="newMovie.cinema">
+                        <mat-option *ngFor="let cinema of cinemas" [value]="cinema">
+                        {{cinema}}
+                        </mat-option>
+                    </mat-select>
+            </mat-form-field>
+    </div>
+    <div class="row">
+        <button mat-raised-button (click)='onSubmit()' type="submit">Submit</button>
+    </div>
+</div>
