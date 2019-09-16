@@ -37,8 +37,6 @@ export class MovieRatingComponent implements OnInit {
 
   ratingAdded(rating: MovieRating) {
 
-
-
     if (this.name.length !== 0) {
 
       rating.user = this.name;
