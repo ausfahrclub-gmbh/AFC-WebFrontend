@@ -18,11 +18,11 @@ export class MovieRatingComponent implements OnInit {
   // timer = setInterval(() => {
   //   console.log('timer');
   //   this.coolingDown = true;
-  //   clearTimeout(this.timer);   
+  //   clearTimeout(this.timer);
   // }, 2000);
-  
+
   coolingDown = false;
-  
+
 
   constructor(private movieService: MovieService, private movieRatingService: MovieRatingService, private toastrService: ToastrService) { }
 
@@ -41,18 +41,23 @@ export class MovieRatingComponent implements OnInit {
 
       rating.user = this.name;
       this.movieRatingService.postRating(rating).subscribe(
-        
+
         (data) => {
 
-          if(data["rowsAffected"] == 1){           
+          if (data['rowsAffected'] == 1) {
             this.toastrService.show('Raiting submitted');
-          }         
-          else{
+          } else {
             this.toastrService.show('Raiting failed. Please try again or contact afc@outlook.at');
           }
-        
+
         }, (error) => {
-          alert('Could not submit rating: ' + error.message);
+
+          if (error.message.includes('Internal Server Error')) {
+            alert('Rating not submitted -> You Already rated this Movie!!!');
+          } else {
+            alert('Could not submit rating: ' + error.message);
+          }
+
         });
     } else {
       this.toastrService.show('Please enter your name!');
